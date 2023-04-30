@@ -22,14 +22,14 @@ public class Main {
         long child = persons.stream()
                 .filter(person -> person.getAge() < 18)
                 .count();
-        System.out.println("Список несовершеннолетних");
+        System.out.println("Количество несовершеннолетних");
         System.out.println(child);
         System.out.println();
 
 
         List<String> military = persons.stream()
                 .filter(person -> person.getSex().equals(Sex.MAN))
-                .filter(person -> person.getAge() >= 18 && person.getAge() <= 27)
+                .filter(person -> person.getAge() >= 18 && person.getAge() < 27)
                 .map(person -> person.toString())
                 .collect(Collectors.toList());
         System.out.println("Список военнообязанных");
@@ -42,8 +42,8 @@ public class Main {
         List<String> familiEducate = persons.stream()
                 .filter(person -> person.getEducation().equals(Education.HIGHER))
                 .filter(person -> person.getAge() >= 18)
-                .filter(person -> person.getSex().equals(Sex.WOMAN) && person.getAge() <= 60)
-                .filter(person -> person.getSex().equals(Sex.MAN) && person.getAge() <= 65)
+                .filter(person -> person.getSex().equals(Sex.WOMAN) && person.getAge() < 60)
+                .filter(person -> person.getSex().equals(Sex.MAN) && person.getAge() < 65)
                 .sorted(Comparator.comparing(Person::getFamily))
                 .map(person -> person.toString())
                 .collect(Collectors.toList());
